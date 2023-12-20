@@ -30,14 +30,14 @@ export default function Chapters() {
           >
             <AccordionTrigger
               className={cn(
-                "!no-underline   w-full h-full pl-5 pr-1 flex justify-between items-center",
+                "!no-underline   w-full h-full px-5 pr-1 flex justify-between items-center",
                 accordionActive === item.title && "bg-[#e7f1ff]"
               )}
             >
               <h1 className="font-extrabold text-lg">{item.title}</h1>
             </AccordionTrigger>
             <AccordionContent>
-              <div className="flex flex-col pr-1">
+              <div className="flex flex-col">
                 {item.chapter.map((cpt, idx) => (
                   <ChapterItem
                     label={cpt.title}

@@ -1,8 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;500;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @import "aos/dist/aos.css";
-@import url("https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;500;600;700&display=swap");
+
+html,
+h1,
+h2,
+h3,
+p,
+button,
+span,
+i {
+  font-family: "Signika Negative", sans-serif !important;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -67,15 +79,21 @@
   }
 }
 
-html {
-  font-family: "Signika Negative", sans-serif;
-}
 @layer base {
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+  }
+  p {
+    @apply font-light;
+  }
+}
+
+@layer components {
+  .section {
+    @apply relative max-w-7xl w-full mx-auto;
   }
 }
 
@@ -106,4 +124,7 @@ html {
 
 .bg-icon {
   background: rgba(95, 45, 237, 0.04);
+}
+.rounded-portfolio {
+  border-radius: 50% 50% 49% 51% / 100% 100% 0% 0%;
 }

@@ -15,6 +15,7 @@ const CourseDetail = () => {
           height={800}
           objectFit="cover"
           alt="html"
+          className="rounded-md"
         />
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-x-3">
@@ -70,7 +71,7 @@ const CourseDetail = () => {
             <span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
             <a
               href="#"
-              className="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white"
+              className="text-sm font-medium text-gray-900 underline  dark:text-white"
             >
               73 reviews
             </a>

@@ -31,10 +31,10 @@ const Hero = () => {
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-y-10">
         <div className="w-full flex justify-center items-center">
           <div className="max-w-xl w-full flex flex-col gap-y-4">
-            <h1 className="text-lg tracking-widest text-red-500 font-[500]">
+            <h1 className="text-lg tracking-widest text-red-500 font-bold">
               EDUCATION SOLUTION
             </h1>
-            <h3 className="text-5xl font-extrabold">
+            <h3 className="text-5xl font-extrabold mb-5">
               Cloud-based LMS Trusted by 1000+
             </h3>
             <p className="tracking-wide">

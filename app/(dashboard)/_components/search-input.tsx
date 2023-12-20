@@ -6,7 +6,7 @@ import React, { useState } from "react";
 const SearchInput = () => {
   const [value, setValue] = useState("");
   return (
-    <div className="w-full relative">
+    <div className="w-full relative ">
       <Search className="h-4 w-4 absolute top-4 left-3 text-slate-600" />
       <Input
         onChange={(e) => setValue(e.target.value)}

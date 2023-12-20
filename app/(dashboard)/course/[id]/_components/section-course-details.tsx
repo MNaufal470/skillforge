@@ -15,7 +15,7 @@ const SectionCourseDetails = () => {
           <DetailCard title="Enrolled" subtitle="100 Students" />
           <DetailCard title="Course Status" subtitle="Available" />
         </div>
-        <div className="w-full space-y-2 flex flex-col justify-center items-center  ">
+        <div className="w-full space-y-2 flex flex-col justify-center items-center ">
           <DetailCard title="Course Level" subtitle="Intermediate" />
           <DetailCard title="Language" subtitle="English" />
           <DetailCard title="Discount" subtitle="No Discount" />

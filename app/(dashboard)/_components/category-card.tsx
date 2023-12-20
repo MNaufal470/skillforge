@@ -8,30 +8,36 @@ interface CategoryCardProps {
   title: string;
   desc: string;
   img: string;
+  icon: string;
 }
 
-const CategoryCard = ({ title, desc, img }: CategoryCardProps) => {
+const CategoryCard = ({ title, desc, img, icon }: CategoryCardProps) => {
+  let splitTitle = title.split(" ");
   return (
     <div
-      className="relative cursor-pointer group hover:bg-[#5f2ded] hover:-translate-y-5 transition duration-300 bg-white rounded-md p-6 py-10 shadow-lg flex justify-center flex-col items-center"
-      data-aos="fade-right"
-      data-aos-duration="1000"
-      data-aos-easing="ease-in-out"
-      data-aos-once="false"
-      data-aos-anchor-placement="left"
+      className="relative max-w-sm md:max-w-none  w-full py-3 px-4 bg-white  rounded-sm shadow-2xl  space-y-3 flex flex-col"
+      // data-aos="flip-left"
+      // data-aos-duration="1500"
+      // data-aos-offset="250"
     >
-      <div className="p-5 rounded-full bg-[#5F2DED]/10 group-hover:bg-white">
-        <Image src={img} alt="stock" height={65} width={65} />
+      <div className="relative  flex flex-col justify-center items-center  p-4 rounded-sm bg-[#F8F7F9]">
+        <img
+          src={img}
+          alt=""
+          className="w-full h-[350px] object-contain rounded-sm rounded-b-xl"
+        />
+        <div className="mt-6 absolute bottom-0 pt-5  w-full rounded-portfolio bg-white flex justify-center items-center flex-col">
+          <div className="w-fit border-[10px] bg-yellowPrimary  border-white p-2 rounded-full">
+            <img src={icon} alt="" className="w-10 h-10" />
+          </div>
+        </div>
       </div>
-      <div className="mt-5 text-center">
-        <h1 className="group-hover:text-white  text-2xl mb-3 font-semibold">
-          {title}
+      <div className="text-center">
+        <h1 className="text-3xl font-bold pb-5">
+          {splitTitle[0]}{" "}
+          <span className="text-redPrimary">{splitTitle[1]}</span>
         </h1>
-        <p className="group-hover:text-white text-muted-foreground">{desc}</p>
-      </div>
-      <div className="">
-        <ChevronLeft className="h-8 w-8 rotate-45 absolute top-0 left-0 text-[#5f2ded] group-hover:text-white" />
-        <ChevronRight className="h-8 w-8 rotate-45 absolute bottom-0 right-0 text-[#5f2ded] group-hover:text-white" />
+        <p className="text-xs font-light">{desc}</p>
       </div>
     </div>
   );

@@ -26,7 +26,7 @@ const SubscribeEmails = () => {
               width={50}
               height={50}
               objectFit="cover"
-              className="rounded-full"
+              className="rounded-full object-cover"
             />
             <div>
               <h1 className="text-green-500">Congratulations</h1>
@@ -38,10 +38,10 @@ const SubscribeEmails = () => {
         </div>
         <div className="w-full">
           <div className="max-w-xl">
-            <h1 className="text-lg tracking-widest text-red-500 font-[500]">
+            <h1 className="text-lg tracking-widest text-red-500 font-bold">
               EDUCATION SKILLFORGE
             </h1>
-            <h3 className="text-3xl md:text-5xl font-extrabold mt-5 tracking-wide md:tracking-wider leading-tight">
+            <h3 className="text-3xl md:text-5xl font-extrabold mt-5 tracking-wide  leading-tight">
               Subscibe your email for interesting promotions
             </h3>
             <p className="tracking-wide mt-3 pl-3 border-l-4 border-[#5f2ded] text-muted-foreground ">

@@ -11,7 +11,7 @@ const About = () => {
     "Mobile Accessibility",
   ];
   return (
-    <div className="relative bg-[#f7f8fd]/50 py-10 md:py-40 px-5 md:px-20 2xl:px-40 w-full">
+    <div className="relative bg-[#f7f8fd]/50 py-10 md:py-40 px-5 md:px-20 2xl:px-40 w-full ">
       <div className="grid grid-cols-1 lg:grid-cols-2 w-full gap-20">
         <div className="relative w-full flex items-center justify-center">
           <img
@@ -27,13 +27,13 @@ const About = () => {
         </div>
         <div className="w-full">
           <div className="max-w-xl">
-            <h1 className="text-lg tracking-widest text-red-500 font-[500]">
+            <h1 className="text-lg tracking-widest text-red-500 font-bold">
               EDUCATION SOLUTION
             </h1>
-            <h3 className="text-3xl md:text-5xl font-extrabold mt-5 tracking-wide md:tracking-wider leading-tight">
+            <h3 className="text-3xl md:text-5xl font-extrabold my-5 tracking-wide md:tracking-wider leading-tight">
               Welcome to the online Learning Center
             </h3>
-            <p className="tracking-wide mt-3 pl-3 border-l-4 border-[#5f2ded] text-muted-foreground ">
+            <p className="tracking-wide  pl-3 border-l-4 border-[#5f2ded] text-muted-foreground">
               Experience the future of learning with our LMS application, where
               innovation meets education to create a more engaging,
               personalized, and effective learning environment for all users.

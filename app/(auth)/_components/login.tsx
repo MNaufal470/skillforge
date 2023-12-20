@@ -40,9 +40,9 @@ const Login = ({ setIsLoginTab }: LoginProps) => {
   return (
     <div
       className="bg-white rounded-md p-10 w-[650px] shadow-xl "
-      data-aos="flip-right"
-      data-aos-duration="1000"
-      data-aos-easing="ease-in-out"
+      // data-aos="flip-right"
+      // data-aos-duration="1000"
+      // data-aos-easing="ease-in-out"
     >
       <div className="flex items-center flex-col gap-y-2">
         <h1 className="text-2xl font-extrabold">Login</h1>

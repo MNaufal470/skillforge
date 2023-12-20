@@ -20,9 +20,9 @@ const Page = () => {
         </div>
       </div>
       <div className="absolute top-[70%]  left-20 -translate-y-1/2 ">
-        <Radius className="text-redPrimary animate-spin duration-2000 w-10 h-10 hidden md:block" />
+        <Radius className="text-redPrimary animate-spin duration-2000 w-10 h-10 hidden lg:block" />
       </div>
-      <div className="absolute top-[70%]  right-20 -translate-y-1/2 ">
+      <div className="absolute hidden xl:block top-[70%]  right-20 -translate-y-1/2 ">
         <Image
           src={"/login.png"}
           width={300}
