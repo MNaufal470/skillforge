@@ -12,7 +12,7 @@ import React from "react";
 
 const Prerequisites = () => {
   return (
-    <div>
+    <div className="pt-10 md:pt-0">
       <Card>
         <CardHeader>
           <CardTitle>

@@ -7,7 +7,7 @@ import SectionTabDetails from "./section-tab-detail";
 
 const CourseDetail = () => {
   return (
-    <div className="max-w-4xl mx-auto ">
+    <div className="max-w-3xl ">
       <div className="flex flex-col gap-y-3">
         <Image
           src={"/html.jpg"}
@@ -17,7 +17,7 @@ const CourseDetail = () => {
           alt="html"
           className="rounded-md"
         />
-        <div className="flex justify-between items-center">
+        <div className="flex flex-wrap gap-y-3 md:flex-nowrap justify-between items-center">
           <div className="flex items-center gap-x-3">
             <div className="flex w-36 justify-center items-center p-2 rounded-md bg-bluePrimary">
               <h1 className="text-white font-semibold text-sm">
@@ -40,11 +40,11 @@ const CourseDetail = () => {
         <h1 className="text-3xl font-extrabold">
           React & Typescript - The Practical Guide
         </h1>
-        <div className="flex gap-x-6 items-center">
+        <div className="flex flex-wrap gap-y-2 gap-x-6 items-center">
           <h3 className="text-xl text-bluePrimary font-bold">
             {formatToRupiah(100000)}
           </h3>
-          <div className="flex items-center gap-x-1">
+          <div className="flex  items-center gap-x-1">
             <BookMarked className="text-[#5f2ded]" />
             <span className="text-sm">25 Chapters</span>
           </div>
@@ -68,16 +68,16 @@ const CourseDetail = () => {
             <p className="ms-2 text-sm font-bold text-gray-900 dark:text-white">
               4.95
             </p>
-            <span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
+            <span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400 hidden md:block"></span>
             <a
               href="#"
-              className="text-sm font-medium text-gray-900 underline  dark:text-white"
+              className="hidden md:block text-sm font-medium text-gray-900 underline  dark:text-white"
             >
               73 reviews
             </a>
           </div>
         </div>
-        <p className="text-muted-foreground text-lg text-justify mt-10">
+        <p className="text-muted-foreground text-lg text-justify mt-5 md:mt-10">
           React is a popular JavaScript library developed by Facebook for
           building user interfaces. Known for its simplicity and efficiency,
           React allows developers to create interactive and dynamic web

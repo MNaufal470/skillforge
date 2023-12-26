@@ -8,7 +8,7 @@ const SectionCourseDetails = () => {
       <div className="border-l-2 border-bluePrimary">
         <h1 className="pl-2 text-lg font-bold">Course Details</h1>
       </div>
-      <div className="bg-[#F4F4F8]  p-6 mt-10 grid grid-cols-2 divide-x-2 divide-black shadow-lg">
+      <div className="bg-[#F4F4F8] space-y-2  p-6 mt-10 grid md:grid-cols-2 md:divide-x-2 divide-black shadow-lg">
         <div className="w-full flex flex-col justify-center items-center space-y-2">
           <DetailCard title="Instructor" subtitle="Harris Calvington" />
           <DetailCard title="Lectures" subtitle="70 Chapters" />

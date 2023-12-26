@@ -4,7 +4,9 @@ import { MoveRight } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import CategoryCard from "./category-card";
 import Aos from "aos";
+import { useMediaQuery } from "react-responsive";
 const Categories = () => {
+  const isBigScreen = useMediaQuery({ query: "(min-width: 1520px)" });
   let subjects = [
     {
       name: "Business Analytics and Intelligence",
@@ -56,7 +58,10 @@ const Categories = () => {
     setisAllCategory(false);
   }, []);
 
-  let renderCategories = subjects.splice(0, isAllCategory ? 8 : 3);
+  let renderCategories = subjects.splice(
+    0,
+    isAllCategory ? 8 : isBigScreen ? 4 : 3
+  );
 
   if (!mounted) {
     return null;
@@ -84,7 +89,7 @@ const Categories = () => {
         </Button>
       </div>
       <div
-        className={`transition-all duration-1000 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 2xl:gap-16 2xl:grid-cols-4 mt-14`}
+        className={`transition-all duration-1000 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-10 2xl:gap-16 2xl:grid-cols-4 mt-14`}
       >
         {renderCategories.map((item, idx) => (
           <CategoryCard

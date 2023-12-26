@@ -89,6 +89,7 @@ const Login = ({ setIsLoginTab }: LoginProps) => {
                   <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input
+                      type="password"
                       disabled={isSubmitting}
                       className="py-6"
                       placeholder="Your password"
