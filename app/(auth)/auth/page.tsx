@@ -1,6 +1,6 @@
 "use client";
 import BannerHeader from "@/components/banner-header";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import TabHeader from "../_components/tab-header";
 import { Radius, Triangle, X } from "lucide-react";
 import Login from "../_components/login";
@@ -9,7 +9,6 @@ import Image from "next/image";
 
 const Page = () => {
   const [isLoginTab, setIsLoginTab] = useState<boolean>(true);
-
   return (
     <div className="relative bg-[#f7f8fd75] w-full h-full px-5 lg:px-0 pb-20">
       <BannerHeader title={isLoginTab ? "Login" : "Sign Up"} />

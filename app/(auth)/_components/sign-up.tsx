@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,11 +14,22 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
+import axios from "axios";
+import toast from "react-hot-toast";
+import moment from "moment-timezone";
 
 interface RegisterProps {
   setIsLoginTab: (value: boolean) => void;
 }
 
+interface onSubmitProps {
+  firstname: string;
+  lastname: string;
+  username: string;
+  email: string;
+  password: string;
+  Cpassword: string;
+}
 const formSchema = z
   .object({
     firstname: z.string().min(1, { message: "First name is required!" }),
@@ -29,8 +39,12 @@ const formSchema = z
       .string()
       .min(1, { message: "Email is required!" })
       .email("Please input a valid email!"),
-    password: z.string().min(1, { message: "password is required!" }),
-    Cpassword: z.string().min(1, { message: "confirm password is required!" }),
+    password: z
+      .string()
+      .min(5, { message: "Password must be minimum 5 characters" }),
+    Cpassword: z
+      .string()
+      .min(5, { message: "confirm password must be minimum 5 characters!" }),
   })
   .refine((data) => data.password === data.Cpassword, {
     path: ["Cpassword"],
@@ -50,7 +64,19 @@ const SignUp = ({ setIsLoginTab }: RegisterProps) => {
     },
   });
   const { isSubmitting, isValid } = form.formState;
-  const handleSubmit = () => {};
+  const handleSubmit = async (values: onSubmitProps) => {
+    if (!isValid) {
+      console.log("[REGISTER] values is not Valid");
+    }
+    try {
+      const response = await axios.post("/api/auth/register", values);
+      toast.success("Successfully Registered");
+      setIsLoginTab(true);
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message || "Something went wrong");
+    }
+  };
+
   return (
     <div
       className="bg-white rounded-md p-10 w-[650px] shadow-xl "
@@ -187,7 +213,12 @@ const SignUp = ({ setIsLoginTab }: RegisterProps) => {
               />
             </div>
             <div className="mt-5">
-              <Button variant={"success"} type="submit" className="w-full py-6">
+              <Button
+                variant={"success"}
+                type="submit"
+                className="w-full py-6"
+                disabled={isSubmitting}
+              >
                 {isSubmitting ? (
                   <Loader2 className="h-8 w-8 animate-spin text-secondary" />
                 ) : (

@@ -128,3 +128,14 @@ i {
 .rounded-portfolio {
   border-radius: 50% 50% 49% 51% / 100% 100% 0% 0%;
 }
+.shadow-dashboard {
+  box-shadow: 0 0 1px 1px rgba(95, 45, 237, 0.2);
+}
+
+.ql-container {
+  font-size: 14px !important;
+}
+
+.ql-container {
+  @apply min-h-[100px];
+}

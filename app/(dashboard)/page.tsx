@@ -5,8 +5,10 @@ import About from "./_components/about";
 import Categories from "./_components/categories";
 import CoursesList from "./_components/courses-list";
 import SubscribeEmails from "./_components/email-subscribe";
+import { getCourse } from "@/action/get-course";
 
-const page = () => {
+const page = async () => {
+  const course = await getCourse();
   return (
     <div className="relative ">
       <div className="relative">
@@ -17,7 +19,7 @@ const page = () => {
       <Categories />
       <SubscribeEmails />
 
-      <CoursesList />
+      <CoursesList course={course} />
     </div>
   );
 };

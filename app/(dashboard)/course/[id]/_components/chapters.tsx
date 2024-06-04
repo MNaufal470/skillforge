@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import {
   Accordion,
@@ -8,8 +9,9 @@ import {
 import { chapters } from "@/constant/chapter";
 import ChapterItem from "./chapter-item";
 import { cn } from "@/lib/utils";
+import { Section } from "@/action/get-course";
 
-export default function Chapters() {
+export default function Chapters({ section }: { section: Section[] }) {
   const [accordionActive, setAccordionActive] = useState<string | null>(null);
 
   const toggleAccordion = (value: string) => {
@@ -21,7 +23,7 @@ export default function Chapters() {
   return (
     <div className="mt-10">
       <Accordion type="single" collapsible className="w-full space-y-5">
-        {chapters.map((item, idx) => (
+        {section.map((item, idx) => (
           <AccordionItem
             value={item.title}
             key={idx}
@@ -43,6 +45,7 @@ export default function Chapters() {
                     label={cpt.title}
                     isLock={cpt.isFree ? false : true}
                     key={idx}
+                    courseid={item.courseId}
                   />
                 ))}
               </div>

@@ -2,7 +2,7 @@ import Navbar from "@/app/(dashboard)/_components/navbar";
 import Footer from "@/components/footer";
 import React from "react";
 
-const studentLayout = ({ children }: { children: React.ReactNode }) => {
+const StudentLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Navbar />
@@ -12,4 +12,4 @@ const studentLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default studentLayout;
+export default StudentLayout;

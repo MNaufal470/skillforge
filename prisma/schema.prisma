@@ -1,0 +1,124 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+   previewFeatures = ["fullTextSearch", "fullTextIndex"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Teacher {
+   id Int @id @default(autoincrement())
+   userId Int @unique
+   expert String? @db.VarChar(60)
+   description String? @db.Text
+   imageUrl String? @db.Text
+   user User @relation(fields: [userId],references: [id])
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  firstname String @db.VarChar(30)
+  lastname String @db.VarChar(30)
+  username String @unique @db.VarChar(30)
+  email String @unique @db.VarChar(40)
+  password String 
+  createdAt String
+  updatedAt String?
+  active Boolean @db.TinyInt() @default(true)
+  course Course[]
+  teacher Teacher[]
+}
+
+model Category {
+  id Int @id @default(autoincrement())
+  title String @unique @db.VarChar(60)
+  description String? @db.Text
+  imageUrl String? @db.Text
+  iconUrl String? @db.Text
+  course Course[]
+}
+
+model Course {
+  id Int @id @default(autoincrement())
+  userId Int 
+  title String @db.VarChar(100)
+  languageId Int?
+  levelId Int?
+  description String? @db.Text
+  imageUrl String? @db.Text
+  price Int? @db.Int 
+  isPublished Boolean @db.TinyInt() @default(false)
+  publishedAt DateTime?
+  categoryId Int?
+  active Boolean @db.TinyInt() @default(true)
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now())
+  
+  language Mst_languages? @relation(fields: [languageId], references: [id])
+  level Mst_levels? @relation(fields: [levelId],references: [id])
+  user User? @relation(fields: [userId],references: [id] )
+  category Category? @relation(fields: [categoryId],references: [id])
+
+  section Section[]
+  prerequisites Prerequisites[]
+}
+model Section {
+  id Int @id @default(autoincrement())
+  courseId Int
+  title String @db.VarChar(60)
+  position Int 
+  active Boolean @db.TinyInt() @default(true)
+  createdAt String
+  updatedAt String?
+  course Course? @relation(fields: [courseId],references: [id], onDelete: Cascade)
+  isPublished Boolean @db.TinyInt() @default(false)
+  chapter Chapter[]
+}
+
+model Chapter {
+  id Int @id @default(autoincrement())
+  sectionId Int
+  title String @db.VarChar(60)
+  videoUrl String? @db.Text
+  position Int
+  description String? @db.Text
+  isFree Boolean @db.TinyInt() @default(false)
+  active Boolean @db.TinyInt() @default(true)
+  createdAt String?
+  updatedAt String?
+
+  section Section? @relation(fields: [sectionId],references: [id],onDelete: Cascade)
+  attachment Attachment[]
+}
+
+model Attachment {
+  id Int @id @default(autoincrement())
+  chapterId Int
+  title String @db.VarChar(100)
+  fileUrl String @db.Text
+
+  chapter Chapter? @relation(fields: [chapterId],references: [id], onDelete: Cascade)
+}
+
+model Mst_languages {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(60)
+  course Course[]
+}
+model Mst_levels {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(60)
+  course Course[]
+}
+
+model Prerequisites {
+  id Int @id @default(autoincrement())
+  courseId Int
+  name String @db.VarChar(150)
+  course Course? @relation(fields: [courseId], references: [id])
+}

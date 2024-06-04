@@ -14,6 +14,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useUserStore } from "@/zustand/user-hooks";
+import { redirect, useRouter } from "next/navigation";
 
 interface LoginProps {
   setIsLoginTab: (value: boolean) => void;
@@ -29,11 +33,23 @@ const Login = ({ setIsLoginTab }: LoginProps) => {
     defaultValues: { username: "", password: "" },
   });
   const { isSubmitting, isValid } = form.formState;
-  const handleSubmit = () => {
+  const setUser = useUserStore((state) => state.setUser);
+  const router = useRouter();
+  // const Zuser = useUserStore();
+  const handleSubmit = async (values: {
+    username: string;
+    password: string;
+  }) => {
+    if (!isValid) {
+      return console.log("[SIGN IN] All Field is Required");
+    }
     try {
-      setTimeout(() => console.log("wow"), 5000);
-    } catch (error) {
-      console.log(error);
+      const response = await axios.post("/api/auth/signIn", values);
+      toast.success("Sign In Successfully");
+      setUser(response.data.user);
+      router.push("/");
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message || "Something went wrong");
     }
   };
   return (

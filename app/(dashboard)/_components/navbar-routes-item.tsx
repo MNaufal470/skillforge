@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 
 interface NavbarRoutesItemProps {
-  label: string;
+  label?: string;
   Icon: LucideIcon;
   href: string;
   style?: string;

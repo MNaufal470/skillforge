@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import { ToastProvider } from "@/components/toaster";
+import ConffetiProvider from "@/components/react-confetti-provider";
 const inter = Roboto({
   weight: ["100", "300", "400", "700", "900"],
   style: ["normal", "italic"],
@@ -20,7 +22,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ConffetiProvider />
+        <ToastProvider />
+        {children}
+      </body>
     </html>
   );
 }

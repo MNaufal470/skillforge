@@ -1,34 +1,44 @@
+"use client";
+import { SingleCourse, courseDetail } from "@/action/get-course";
+import { countAttachments } from "@/lib/count-attachment";
+import { countVideos } from "@/lib/count-videos";
+import moment from "moment";
 import React from "react";
 
-const CourseSidebarPreviewDetail = () => {
+const CourseSidebarPreviewDetail = ({ course }: { course: courseDetail }) => {
+  let formatedDate = moment(
+    course.createdAt,
+    "ddd MMM DD YYYY HH:mm:ss [GMT]ZZ (Z)"
+  ).format("DD MMMM YYYY");
+  let countAtt = countAttachments({ section: course.section });
   let CourseSidebarPreviewDetailConstant = [
     {
       title: "Instructor",
-      name: "Tommy Zeed Musique",
+      name: `${course.user.firstname} ${course.user.lastname}`,
     },
     {
       title: "Course Published",
-      name: "05 June 2023",
+      name: `${formatedDate}`,
     },
     {
-      title: "Total Chapters",
-      name: "5",
+      title: "Total Sections",
+      name: course.section.length,
     },
     {
       title: "Total Videos",
-      name: "45",
+      name: `${countVideos({ course })}`,
     },
     {
       title: "Total Attachments",
-      name: "25",
+      name: `${countAtt}`,
     },
     {
       title: "Skill Level",
-      name: "Basic",
+      name: `${course.level.name}`,
     },
     {
       title: "Language",
-      name: "English",
+      name: `${course.language.name}`,
     },
     {
       title: "Certificate",

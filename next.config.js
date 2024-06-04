@@ -2,7 +2,9 @@
 const nextConfig = {
   images: {
     disableStaticImages: true,
+    domains: ["utfs.io"],
   },
+  reactStrictMode: false,
 };
 
 module.exports = nextConfig;

@@ -34,9 +34,9 @@ export default function SelectCategory({ items }: SelectCategoryProps) {
           variant="danger"
           role="combobox"
           aria-expanded={open}
-          className="w-[300px] py-6 justify-between"
+          className="w-full py-6 justify-between"
         >
-          <p className="">
+          <p className="font-light">
             {value
               ? items.find((subject) => subject.name.toLowerCase() === value)
                   ?.name
@@ -46,10 +46,13 @@ export default function SelectCategory({ items }: SelectCategoryProps) {
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[300px] p-0">
+      <PopoverContent className="w-full p-0">
         <Command>
-          <CommandInput placeholder="Search category..." />
-          <CommandEmpty>No framework found.</CommandEmpty>
+          <CommandInput
+            placeholder="Search category..."
+            className="font-light"
+          />
+          <CommandEmpty>No category found.</CommandEmpty>
           <CommandGroup>
             {items.map((subject) => (
               <CommandItem

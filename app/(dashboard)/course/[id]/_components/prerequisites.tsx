@@ -7,10 +7,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { prerequisites } from "@/constant/prerequisites";
+import { Prerequisites } from "@prisma/client";
 import { Check } from "lucide-react";
 import React from "react";
 
-const Prerequisites = () => {
+const Prerequisites = ({
+  prerequisites,
+}: {
+  prerequisites: Prerequisites[];
+}) => {
   return (
     <div className="pt-10 md:pt-0">
       <Card>
@@ -29,7 +34,7 @@ const Prerequisites = () => {
                 <div className="bg-icon p-1 rounded-md">
                   <Check className="text-[#5f2ded] h-4 w-4 2xl:w-6 2xl:h-6" />
                 </div>
-                <p>{item}</p>
+                <p>{item.name}</p>
               </div>
             ))}
           </div>

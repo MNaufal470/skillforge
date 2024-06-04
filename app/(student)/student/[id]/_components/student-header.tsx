@@ -4,7 +4,7 @@ import React from "react";
 
 const StudentHeader = () => {
   return (
-    <div className="px-5 md:px-10 lg:px-0">
+    <div className="max-w-sm mx-auto md:max-w-none px-5 md:px-10 lg:px-0">
       <div className="w-full p-10 flex flex-col md:flex-row gap-x-4 items-center justify-between rounded-xl bg-bluePrimary ">
         <div className="flex flex-col md:flex-row gap-x-4 gap-y-1 items-center">
           <div className="p-1 border-[#dddd] border-2 rounded-full">

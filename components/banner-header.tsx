@@ -10,11 +10,13 @@ const BannerHeader = ({ title }: BannerHeaderProps) => {
   return (
     <div className="relative h-[350px] bg-[#F5F5FE] w-full">
       <div className="relative z-10 flex w-full flex-col gap-y-5 h-full justify-center items-center">
-        <h1 className="text-4xl font-semibold">{title}</h1>
-        <div className="flex items-center">
-          <h3 className="text-xl">Home</h3>
+        <h1 className="text-3xl md:text-4xl text-center md:text-start font-semibold">
+          {title}
+        </h1>
+        <div className="flex items-center flex-wrap justify-center">
+          <h3 className="text-lg md:text-xl">Home</h3>
           <ChevronRight className="h-5 w-5 text-bluePrimary" />
-          <h3 className="text-xl">{title}</h3>
+          <h3 className="text-lg md:text-xl">{title}</h3>
         </div>
       </div>
       <div className="">

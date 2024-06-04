@@ -1,51 +1,66 @@
 "use client";
-import {
-  BookHeadphones,
-  Heart,
-  LayoutGrid,
-  LogIn,
-  Speech,
-  User,
-  XCircle,
-  XSquare,
-} from "lucide-react";
-import React, { useState } from "react";
+import { LayoutGrid, LogIn, Speech, User, XSquare } from "lucide-react";
+import React, { useEffect, useState } from "react";
 import NavbarRoutesItem from "./navbar-routes-item";
+import { useUserStore } from "@/zustand/user-hooks";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 const NavbarRoutes = () => {
-  const [isLogin, setIsLogin] = useState(true);
+  const user = useUserStore((state) => state.user);
+  const qs = useSearchParams();
+  const searchParams = qs.get("status");
+  const path = usePathname();
+  const [mounted, setMounted] = useState(false);
   const [show, setShow] = useState(false);
+  const router = useRouter();
+  const setUser = useUserStore((state) => state.setUser);
+  let toastText =
+    searchParams === "unauthorized"
+      ? "Unauthorized Acesss"
+      : "You're already logged in";
   let routes = [
     {
-      icon: Heart,
-      href: "/wishlist",
-      label: "Wishlist",
-    },
-    {
       label: "Instructor",
-      href: "/my-courses",
+      href: "/teacher",
       icon: Speech,
     },
-    {
-      label: "My Learning",
-      href: "/my-courses",
-      icon: BookHeadphones,
-    },
+
     {
       label: "My Account",
-      href: "/my-account",
+      href: "/student",
       icon: User,
     },
   ];
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  useEffect(() => {
+    if (searchParams) {
+      toast.error(toastText);
+      if (searchParams === "unauthorized") {
+        axios
+          .patch("/api/auth/logout")
+          .then((res) => setUser({}))
+          .then((res) => router.replace(path));
+      } else {
+        router.push(path);
+      }
+    }
+  }, []);
+
+  if (!mounted) return null;
+
   return (
-    <div className=" z-50 ">
+    <div className="z-50">
       <LayoutGrid className="block lg:hidden" onClick={() => setShow(true)} />
       <div
         className={`absolute lg:relative w-full  border-b md:border-none bg-white right-0 ${
           show ? "top-0" : "top-[-500px] lg:top-0"
         }  flex flex-col md:flex-row items-center justify-center py-10 lg:py-0 pt-20  transition-all duration-500`}
       >
-        {isLogin ? (
+        {user?.id &&
           routes.map((item) => (
             <NavbarRoutesItem
               key={item.label}
@@ -53,13 +68,13 @@ const NavbarRoutes = () => {
               Icon={item.icon}
               href={item.href}
             />
-          ))
-        ) : (
+          ))}
+        {!user?.id && (
           <NavbarRoutesItem
             key={"My Account"}
             label={"Get Started"}
             Icon={LogIn}
-            href={"/login"}
+            href={"/auth"}
             style="bg-[#5F2DED] text-white rounded-lg pl-0 px-3 pl-4 border hover:border-[#5F2DED] hover:bg-white hover:text-[#5F2DED]"
           />
         )}

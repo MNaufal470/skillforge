@@ -4,13 +4,17 @@ import Image from "next/image";
 import React from "react";
 import SectionCourseDetails from "./section-course-details";
 import SectionTabDetails from "./section-tab-detail";
+import Preview from "@/components/preview-quill";
+import { countVideos } from "@/lib/count-videos";
+import { courseDetail } from "@/action/get-course";
 
-const CourseDetail = () => {
+const CourseDetail = ({ course }: { course: courseDetail }) => {
+  let length = countVideos({ course });
   return (
     <div className="max-w-3xl ">
       <div className="flex flex-col gap-y-3">
         <Image
-          src={"/html.jpg"}
+          src={course.imageUrl!}
           width={896}
           height={800}
           objectFit="cover"
@@ -20,8 +24,8 @@ const CourseDetail = () => {
         <div className="flex flex-wrap gap-y-3 md:flex-nowrap justify-between items-center">
           <div className="flex items-center gap-x-3">
             <div className="flex w-36 justify-center items-center p-2 rounded-md bg-bluePrimary">
-              <h1 className="text-white font-semibold text-sm">
-                Web Development
+              <h1 className="text-white  font-semibold text-sm">
+                {course.category.title}
               </h1>
             </div>
             <div className="flex w-36 justify-center items-center p-2 rounded-md bg-redPrimary">
@@ -37,20 +41,18 @@ const CourseDetail = () => {
         </div>
       </div>
       <div className="mt-10 flex flex-col gap-y-3 items-start justify-start">
-        <h1 className="text-3xl font-extrabold">
-          React & Typescript - The Practical Guide
-        </h1>
+        <h1 className="text-3xl font-extrabold">{course.title}</h1>
         <div className="flex flex-wrap gap-y-2 gap-x-6 items-center">
           <h3 className="text-xl text-bluePrimary font-bold">
-            {formatToRupiah(100000)}
+            {formatToRupiah(course.price!)}
           </h3>
           <div className="flex  items-center gap-x-1">
             <BookMarked className="text-[#5f2ded]" />
-            <span className="text-sm">25 Chapters</span>
+            <span className="text-sm">{course.section.length} Sections</span>
           </div>
           <div className="flex items-center gap-x-1">
             <Video className="text-[#5f2ded]" />
-            <span className="text-sm">75 Videos</span>
+            <span className="text-sm">{length} Videos</span>
           </div>
           <div className="flex items-center">
             {Array.from({ length: 5 }).map((_, idx) => (
@@ -77,24 +79,10 @@ const CourseDetail = () => {
             </a>
           </div>
         </div>
-        <p className="text-muted-foreground text-lg text-justify mt-5 md:mt-10">
-          React is a popular JavaScript library developed by Facebook for
-          building user interfaces. Known for its simplicity and efficiency,
-          React allows developers to create interactive and dynamic web
-          applications with reusable components. React, often referred to as
-          React.js or ReactJS, is an open-source JavaScript library developed
-          and maintained by Facebook. Launched in 2013, React has quickly gained
-          popularity among developers for building dynamic and interactive user
-          interfaces for web applications. It follows a component-based
-          architecture, allowing developers to create reusable UI components
-          that manage their state independently. React&apos;s declarative and
-          efficient nature simplifies the process of building complex UIs by
-          efficiently updating and rendering the components based on changes in
-          data.
-        </p>
+        <Preview value={course.description!} />
       </div>
-      <SectionCourseDetails />
-      <SectionTabDetails />
+      <SectionCourseDetails course={course} />
+      <SectionTabDetails course={course} />
     </div>
   );
 };

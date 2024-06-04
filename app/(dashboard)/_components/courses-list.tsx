@@ -1,11 +1,10 @@
 "use client";
-import { subjects } from "@/constant/categories";
 import React, { useEffect, useState } from "react";
-import SelectCategory from "./select-category";
 import CourseCard from "@/components/course-card";
 import { useMediaQuery } from "react-responsive";
+import { CourseDashboard } from "@/action/get-course";
 
-const CoursesList = () => {
+const CoursesList = ({ course }: { course: CourseDashboard[] }) => {
   const [mounted, setMounted] = useState<boolean | null>(null);
   useEffect(() => {
     setMounted(true);
@@ -31,13 +30,10 @@ const CoursesList = () => {
             </h1>
           </div>
         </div>
-        <div className="flex items-center gap-x-10">
-          <SelectCategory items={subjects} />
-        </div>
       </div>
       <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-5 gap-10 2xl:gap-10">
-        {Array.from({ length: isBiggerScreen ? 8 : 6 }).map((_, idx) => (
-          <CourseCard key={idx} />
+        {course.map((item, idx) => (
+          <CourseCard key={idx} item={item} />
         ))}
       </div>
     </div>

@@ -7,7 +7,8 @@ import Chapters from "./chapters";
 import Prerequisites from "./prerequisites";
 import Reviews from "./reviews";
 import InstructorProfile from "./instructor-profile";
-const SectionTabDetails = () => {
+import { courseDetail } from "@/action/get-course";
+const SectionTabDetails = ({ course }: { course: courseDetail }) => {
   let tabHeader = [
     {
       value: "curriculum",
@@ -56,16 +57,16 @@ const SectionTabDetails = () => {
           ))}
         </TabsList>
         <TabsContent value="curriculum">
-          <Chapters />
+          <Chapters section={course.section} />
         </TabsContent>
         <TabsContent value="prerequisites">
-          <Prerequisites />
+          <Prerequisites prerequisites={course.prerequisites} />
         </TabsContent>
         <TabsContent value="reviews">
           <Reviews />
         </TabsContent>
         <TabsContent value="Instructor">
-          <InstructorProfile />
+          <InstructorProfile teacher={course.user} />
         </TabsContent>
       </Tabs>
     </div>
